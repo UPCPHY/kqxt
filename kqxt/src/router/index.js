@@ -4,6 +4,10 @@ Vue.use(VueRouter)
 
 const routes = [
 	{
+		path: '/login',
+		component: manage => import('../views/login.vue'),
+	},
+	{
 		path: '/',
 		component: manage => import('../layout/manage.vue'),
 		redirect: '/checkingIn',
