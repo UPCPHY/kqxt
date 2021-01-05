@@ -14,7 +14,7 @@ const routes = [
 			},
 			{
 				path: "/checkingManager",
-				name: "考勤管理",
+				name: "我的报名",
 				component: checkingManager => import('../views/Teacher/checkingManage.vue')
 			},
 			{
@@ -30,7 +30,12 @@ const routes = [
 			{
 				path: "/index",
 				name: "首页",
-				component: checkingIn => import('../views/index.vue') 
+				component: index => import('../views/index.vue') 
+			},
+			{
+				path: "/gameManage",
+				name: "报名审核",
+				component: gameManage => import('../views/Teacher/gameManage.vue')
 			}
 		]
 	}
