@@ -66,13 +66,13 @@
 				this.$refs.loginForm.validate(valid => {
 					if (valid) {
 						http.post('/logins',that.loginForm)
-						.catch(rep => {
+						.then(rep => {
 							console.log(rep)
 							this.$router.push({
 								path: '/index',
 							})
 						})
-						.error(e => {
+						.catch(e => {
 							console.log(e)
 						})
 						console.log(that.loginForm)

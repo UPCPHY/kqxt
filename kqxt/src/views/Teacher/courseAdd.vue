@@ -39,7 +39,7 @@
 		data() {
 			return {
 				ruleForm: {
-					id: "5",
+					aid: "5",
 					title: "ACM国际大学生程序设计大赛",
 					tag: "计算机",
 					teacher: "唐克",

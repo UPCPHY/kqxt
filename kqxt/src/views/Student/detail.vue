@@ -26,7 +26,7 @@
 		data() {
 			return {
 				content: {
-					id: "5",
+					aid: "5",
 					title: "ACM国际大学生程序设计大赛",
 					tag: "计算机",
 					teacher: "唐克",
@@ -37,19 +37,20 @@
 				}
 			}
 		},
-		created() {
-			const _this = this
-			const param = {
-				id:this.$route.query.id
-			}
-			http.get('/findAById',param)
-				.then(rep => {
-					_this.tableData = rep.data
-				})
-				.catch(e => {
-					console.log(e)
-				})
-		}
+    created() {
+      const _this = this
+      const param = {
+        id:this.$route.query.aid
+      }
+      console.log(this.$route.query.aid)
+      http.post('/findAById',param)
+          .then(rep => {
+            _this.content = rep.data
+          })
+          .catch(e => {
+            console.log(e)
+          })
+    }
 	}
 </script>
 
