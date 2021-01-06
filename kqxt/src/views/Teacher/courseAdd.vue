@@ -13,7 +13,6 @@
 		<el-form-item label="主办方" prop="sponsor">
 			<el-input v-model="ruleForm.sponsor"></el-input>
 		</el-form-item>
-		</el-input>
 		<div style="margin: 20px 0;"></div>
 		<el-input type="textarea" placeholder="请输入内容" v-model="ruleForm.detail" maxlength="200" show-word-limit>
 		</el-input>
@@ -35,6 +34,7 @@
 </template>
 
 <script>
+  import http from '../../utils/http.js'
 	export default {
 		data() {
 			return {
@@ -55,16 +55,17 @@
 				const _this = this
 				_this.$refs[formName].validate((valid) => {
 					if (valid) {
-						_this.$axios.put('http://localhost:8181/Person/update', _this.ruleForm).then(function(resp) {
-							if (resp.data == 'success') {
-								_this.$alert('学生' + _this.ruleForm.idKey.id + '修改成功！', '消息', {
-									confirmButtonText: '确定',
-									callback: action => {
-										_this.$router.push('/BookManage')
-									}
-								})
-							}
-						})
+					  http.post("/insertA",_this.ruleForm)
+              .then(rep => {
+                console.log(rep)
+                this.$message({
+                  message: '添加成功',
+                  type: 'success'
+                });
+              })
+             .catch(e => {
+               console.log(e)
+             })
 					} else {
 						return false;
 					}

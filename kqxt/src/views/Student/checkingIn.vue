@@ -51,6 +51,21 @@ export default {
     },
     joinIn(id) {
       console.log(id)
+      const params = {
+          aId: id,
+          uId: '0',
+          stage: '0'
+      }
+      http.post('/insertJoin',params)
+      .then(rep=>{
+        this.$message({
+          message: '报名成功',
+          type: 'success'
+        });
+      })
+      .catch(e => {
+        console.log(e)
+      })
     },
 
   },

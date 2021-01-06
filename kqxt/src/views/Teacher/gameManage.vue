@@ -10,7 +10,7 @@
      width="80">
    </el-table-column>
    <el-table-column
-     prop="username"
+     prop="name"
      label="用户名"
      width="280">
    </el-table-column>
@@ -35,12 +35,13 @@
 </template>
 
 <script>
+  import http from '../../utils/http.js'
   export default {
     data() {
       return {
         tableData: [{
           aid:"1",
-		  username:"shd",
+		  name:"shd",
 		  title:"ACM国际大学生程序设计大赛",
 		  stage:"未通过"
         }],
@@ -59,6 +60,23 @@
 		joinIn(id) {
 			console.log(id)
 		}
-	}
+	},
+    created() {
+      const _this = this
+      http.get('findAllCheck')
+      .then(rep => {
+        rep.data.forEach(item => {
+          if(item.stage == "1") {
+            item.stage = "已通过"
+          } else {
+            item.stage = "未通过"
+          }
+        })
+        _this.tableData = rep.data;
+      })
+      .catch(e => {
+        console.log(e)
+      })
+    }
   }
 </script>
