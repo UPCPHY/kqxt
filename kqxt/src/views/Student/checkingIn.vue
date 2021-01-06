@@ -50,6 +50,7 @@
 </template>
 
 <script>
+  import http from '../../utils/http.js'
   export default {
     data() {
       return {
@@ -75,6 +76,16 @@
 		},
 		joinIn(id) {
 			console.log(id)
+		},
+		create() {
+			const _this = this
+			http.get('/findA')
+				.then(rep => {
+					_this.tableData = rep.data
+				})
+				.catch(e => {
+					console.log(e)
+				})
 		}
 	}
   }

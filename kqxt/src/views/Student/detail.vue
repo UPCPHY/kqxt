@@ -21,6 +21,7 @@
 </template>
 
 <script>
+	import http from '../../utils/http.js'
 	export default {
 		data() {
 			return {
@@ -37,7 +38,17 @@
 			}
 		},
 		created() {
-			console.log(this.$route.query.id)
+			const _this = this
+			const param = {
+				id:this.$route.query.id
+			}
+			http.get('/findAById',param)
+				.then(rep => {
+					_this.tableData = rep.data
+				})
+				.catch(e => {
+					console.log(e)
+				})
 		}
 	}
 </script>
